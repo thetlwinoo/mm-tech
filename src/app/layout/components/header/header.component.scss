@@ -1,0 +1,43 @@
+:host {
+    .social-flex {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-66%) translateX(-2%) rotate(90deg);
+        justify-content: center;
+        z-index: 10;
+        font-size: 12px;
+        text-transform: uppercase;
+
+        @media (max-width: 767px) {
+            display: none;
+        }
+
+        p.social-heading {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.4em;
+            margin-right: 34px;
+            margin-bottom: 0;
+
+        }
+
+        p.social-icons {
+            letter-spacing: 0;
+
+            a.fa {
+                margin-left: 13px;
+
+                &:hover {
+                    opacity: 1 !important;
+                }
+            }
+        }
+    }
+
+    .ds {
+        background-color: transparent;
+    }
+
+}

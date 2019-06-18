@@ -1,37 +1,89 @@
-<div id="main">
-  <ng-container *ngIf="boxConfig.layout.toolbar.position === 'above'">
-    <ng-container *ngTemplateOutlet="toolbar"></ng-container>
-  </ng-container>
+<div class="preloader">
+  <div class="preloader_image"></div>
+</div>
 
-  <ng-container>
+<!-- search modal -->
+<div class="modal" tabindex="-1" role="dialog" aria-labelledby="search_modal" id="search_modal">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="widget widget_search">
+    <a href="./" class="logo">
+      <span class="logo-text py-20"><strong>MM</strong>TECH</span>
+    </a>
+    <form method="get" class="searchform search-form" action="/">
+      <div class="form-group">
+        <input type="text" value="" name="search" class="form-control" placeholder="Search keyword"
+          id="modal-search-input">
+      </div>
+      <button type="submit" class="btn">Search</button>
+    </form>
+  </div>
+</div>
+
+<!-- Unyson messages modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="messages_modal">
+  <div class="fw-messages-wrap ls p-normal">
+    <!-- Uncomment this UL with LI to show messages in modal popup to your user: -->
+    <!--
+		<ul class="list-unstyled">
+			<li>Message To User</li>`
+		</ul>
+		-->
+
+  </div>
+</div><!-- eof .modal -->
+
+<div id="canvas">
+  <div id="box_wrapper">
+    <ng-container *ngIf="boxConfig.layout.toolbar.position === 'above'">
+      <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+    </ng-container>
+
+    <!-- <ng-container>
     <ng-container *ngTemplateOutlet="topNavbar"></ng-container>
-  </ng-container>
-
-  <ng-container *ngIf="boxConfig.layout.toolbar.position === 'below'">
-    <ng-container *ngTemplateOutlet="toolbar"></ng-container>
-  </ng-container>
-
-  <div id="container-1" class="wrapper">
+  </ng-container> -->
 
     <ng-container>
-      <ng-container *ngTemplateOutlet="leftNavbar"></ng-container>
+      <ng-container *ngTemplateOutlet="header"></ng-container>
     </ng-container>
 
-    <div id="container-2" class="wrapper">
-      <div id="container-3" class="wrapper" boxPerfectScrollbar
-        [boxPerfectScrollbarOptions]="{suppressScrollX: true, updateOnRouteChange : true}">
-        <content></content>
+    <ng-container *ngIf="boxConfig.layout.toolbar.position === 'below'">
+      <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+    </ng-container>
 
-        <ng-container *ngIf="boxConfig.layout.footer.position === 'above-static'">
-          <ng-container *ngTemplateOutlet="footer"></ng-container>
-        </ng-container>
+    <div id="container-1" class="wrapper">
+
+      <ng-container>
+        <ng-container *ngTemplateOutlet="leftNavbar"></ng-container>
+      </ng-container>
+
+      <div id="container-2" class="wrapper">
+        <div id="container-3" class="wrapper" boxPerfectScrollbar
+          [boxPerfectScrollbarOptions]="{suppressScrollX: true, updateOnRouteChange : true}">
+
+          <div id="canvas">
+            <div id="box_wrapper">
+              <content></content>
+            </div>
+          </div>
+
+
+          <ng-container *ngIf="boxConfig.layout.footer.position === 'below'">
+            <ng-container *ngTemplateOutlet="footer"></ng-container>
+          </ng-container>
+        </div>
       </div>
+
+      <ng-container *ngIf="boxConfig.layout.footer.position === 'above-fixed'">
+        <ng-container *ngTemplateOutlet="footer"></ng-container>
+      </ng-container>
+
     </div>
 
-    <ng-container *ngIf="boxConfig.layout.footer.position === 'above-fixed'">
-      <ng-container *ngTemplateOutlet="footer"></ng-container>
+    <ng-container *ngIf="boxConfig.layout.copyright.position === 'below-fixed'">
+      <ng-container *ngTemplateOutlet="copyright"></ng-container>
     </ng-container>
-
   </div>
 </div>
 
@@ -43,8 +95,14 @@
 
 <ng-template #footer>
   <footer *ngIf="!boxConfig.layout.footer.hidden"
+    class="page_footer ls ms s-pt-80 s-pb-70 s-py-lg-120 s-pt-xl-20 s-pb-xl-20 c-gutter-60 text-center text-md-left"
     [ngClass]="boxConfig.layout.footer.customBackgroundColor === true ? boxConfig.layout.footer.position + ' ' + boxConfig.layout.footer.background : boxConfig.layout.footer.position">
   </footer>
+</ng-template>
+
+<ng-template #header>
+  <app-header variant="layout1" class="header" fxHide fxShow.gt-md *ngIf="!boxConfig.layout.header.hidden">
+  </app-header>
 </ng-template>
 
 <ng-template #topNavbar>
@@ -57,4 +115,9 @@
     *ngIf="!boxConfig.layout.navbar.hidden">
     <navbar [variant]="boxConfig.layout.navbar.variant" class="left-navbar"></navbar>
   </box-sidebar>
+</ng-template>
+
+<ng-template #copyright>
+  <copyright fxHide fxShow.gt-md *ngIf="!boxConfig.layout.header.hidden">
+  </copyright>
 </ng-template>

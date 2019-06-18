@@ -9,6 +9,9 @@ import { Layout1Module } from './layout1/layout1.module';
   imports: [
     CommonModule,
     Layout1Module
+  ],
+  exports: [
+    Layout1Module
   ]
 })
 export class LayoutModule { }

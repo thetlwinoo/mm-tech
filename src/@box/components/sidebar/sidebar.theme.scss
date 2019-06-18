@@ -1,0 +1,16 @@
+@mixin box-sidebar-theme($theme) {
+
+    $background: map-get($theme, background);
+
+    box-sidebar {
+        background: map-get($background, background);
+    }
+
+    .box-sidebar-overlay {
+        background-color: rgba(0, 0, 0, 0.6);
+
+        &.box-sidebar-overlay-invisible {
+            background-color: transparent;
+        }
+    }
+}
